@@ -1,3 +1,5 @@
+import com.sun.tools.hat.internal.util.Misc
+
 buildscript {
     ext {
         springBootVersion = '1.0.0.RC5'
@@ -68,6 +70,7 @@ dependencies {
 
     // Jersey support
     compile "org.glassfish.jersey.containers:jersey-container-servlet:${jerseyServletVersion}"
+    compile "org.glassfish.jersey.ext:jersey-spring3:${jerseyServletVersion}"
     compile "org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyClientVersion}"
 
     // Misc
