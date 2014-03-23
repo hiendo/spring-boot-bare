@@ -2,8 +2,8 @@ package com.github.hiendo.bare.servertests;
 
 import com.github.hiendo.bare.config.AppConfiguration;
 import com.github.hiendo.bare.config.AppServerProperties;
+import com.github.hiendo.bare.servertests.operations.RestTestOperations;
 import com.github.hiendo.bare.servertests.operations.StaticFileOperations;
-import com.github.hiendo.bare.servertests.operations.TestControllerOperations;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.grizzly.connector.GrizzlyConnectorProvider;
@@ -30,7 +30,7 @@ public class AbstractServerTests {
     private static AppServerProperties appServerProperties;
 
     protected static StaticFileOperations staticFileOperations;
-    protected static TestControllerOperations testControllerOperations;
+    protected static RestTestOperations restTestOperations;
 
     @BeforeSuite
 	public void startupEmbeddedServer() throws Exception {
@@ -62,7 +62,7 @@ public class AbstractServerTests {
 
     private void setupOperationClasses(WebTarget webTarget) {
         staticFileOperations = new StaticFileOperations(webTarget);
-        testControllerOperations = new TestControllerOperations(webTarget);
+        restTestOperations = new RestTestOperations(webTarget);
     }
 
     private Future<ConfigurableApplicationContext> startupServer() throws Exception {

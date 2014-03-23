@@ -8,11 +8,19 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class TestControllerTests extends AbstractServerTests {
+public class RestTests extends AbstractServerTests {
 
     @Test
     public void canGetTestEntity() throws Exception {
-        TestEntity testEntity = testControllerOperations.getTestEntity();
+        TestEntity testEntity = restTestOperations.getEntityFromController();
+
+        assertThat(testEntity, notNullValue());
+        assertThat(testEntity.getTestValue(), notNullValue());
+    }
+
+    @Test
+    public void canGetTestEntityUsingJerseyResource() throws Exception {
+        TestEntity testEntity = restTestOperations.getEntityFromResource();
 
         assertThat(testEntity, notNullValue());
         assertThat(testEntity.getTestValue(), notNullValue());
