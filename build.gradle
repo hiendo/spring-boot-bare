@@ -98,5 +98,5 @@ test {
 }
 
 springBoot {
-    mainClass = 'com.github.hiendo.bare.config.AppMain'
+    mainClass = 'com.github.hiendo.springboot.config.AppMain'
 }
