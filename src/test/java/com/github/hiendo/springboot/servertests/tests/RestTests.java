@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class RestTests extends AbstractServerTests {
 
     @Test
-    public void canGetTestEntity() throws Exception {
+    public void canGetTestEntityUsingSpringController() throws Exception {
         TestEntity testEntity = restTestOperations.getEntityFromController();
 
         assertThat(testEntity, notNullValue());

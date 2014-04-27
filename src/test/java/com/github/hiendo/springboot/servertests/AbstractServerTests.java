@@ -4,9 +4,8 @@ import com.github.hiendo.springboot.config.AppConfiguration;
 import com.github.hiendo.springboot.config.AppServerProperties;
 import com.github.hiendo.springboot.servertests.operations.RestTestOperations;
 import com.github.hiendo.springboot.servertests.operations.StaticFileOperations;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.client.ClientProperties;
-import org.glassfish.jersey.grizzly.connector.GrizzlyConnectorProvider;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.bind.PropertySourcesPropertyValues;
@@ -79,8 +78,7 @@ public class AbstractServerTests {
 
     private WebTarget setupClient(String serverBaseUrl) {
         ClientConfig clientConfig = new ClientConfig();
-        clientConfig.connectorProvider(new GrizzlyConnectorProvider());
-        clientConfig.property(ClientProperties.ASYNC_THREADPOOL_SIZE, "5");
+        clientConfig.connectorProvider(new ApacheConnectorProvider());
         Client client = ClientBuilder.newClient(clientConfig).register(JacksonFeature.class);
         return client.target(serverBaseUrl);
     }

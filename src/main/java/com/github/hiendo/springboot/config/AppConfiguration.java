@@ -1,25 +1,26 @@
 package com.github.hiendo.springboot.config;
 
+import com.github.hiendo.springboot.web.TestResource;
 import org.apache.catalina.Context;
-import org.apache.log4j.Logger;
 import org.apache.tomcat.JarScanner;
 import org.apache.tomcat.JarScannerCallback;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.JpaRepositoriesAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.MongoTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.jms.JmsTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.boot.autoconfigure.mobile.DeviceResolverAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.reactor.ReactorAutoConfiguration;
 import org.springframework.boot.autoconfigure.redis.RedisAutoConfiguration;
@@ -46,7 +47,7 @@ import java.util.Set;
 
 
 @Configuration
-@ComponentScan(basePackages = "com.github.hiendo")
+@ComponentScan(basePackages = "com.github.hiendo.springboot")
 @EnableAutoConfiguration(
         exclude = {RabbitAutoConfiguration.class, AopAutoConfiguration.class, BatchAutoConfiguration.class,
                 JpaRepositoriesAutoConfiguration.class, MongoAutoConfiguration.class,
@@ -60,7 +61,7 @@ import java.util.Set;
 @EnableWebSocket
 public class AppConfiguration implements WebSocketConfigurer {
 
-    private static final Logger logger = Logger.getLogger(AppConfiguration.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(TestResource.class);
 
     @Autowired
     private AppServerProperties appServerProperties;
