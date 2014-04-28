@@ -29,6 +29,9 @@ ext {
     jodaTimeVersion = '2.3'
     springJavaConfigVersion = '1.0.0.m3'
     hibernateValidatorVersion = '5.1.0.Final'
+    commonBeanUtilsVersion = '1.9.1'
+    commonIoVersion = '2.4'
+
 
     testNgVersion = '6.8'
     mockitoVersion = '1.9.5'
@@ -36,7 +39,8 @@ ext {
 }
 
 sourceCompatibility = 1.7
-group = 'com.github.hvd617.bare'
+targetCompatibility = 1.7
+group = 'com.github.hvd617.template'
 version = '1.0.0-SNAPSHOT'
 
 configurations {
@@ -68,12 +72,13 @@ dependencies {
 
     // Misc
     compile "org.hibernate:hibernate-validator:${hibernateValidatorVersion}"
+    compile "commons-beanutils:commons-beanutils:${commonBeanUtilsVersion}"
+
 
     // Testing
     testCompile "org.hamcrest:hamcrest-library:${hamcrestVersion}"
     testCompile "org.testng:testng:${testNgVersion}"
-    testCompile "org.eclipse.jetty:jetty-client:${jettyClientVersion}"
-    testCompile "org.eclipse.jetty.websocket:websocket-client:${jettyClientVersion}"
+    testCompile "commons-io:commons-io:${commonIoVersion}"
 
     // Jersey client for testing
     testCompile "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"

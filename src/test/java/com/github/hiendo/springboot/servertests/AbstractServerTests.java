@@ -4,14 +4,12 @@ import com.github.hiendo.springboot.config.AppConfiguration;
 import com.github.hiendo.springboot.config.AppServerProperties;
 import com.github.hiendo.springboot.servertests.operations.RestTestOperations;
 import com.github.hiendo.springboot.servertests.operations.StaticFileOperations;
+import com.github.hiendo.springboot.servertests.properties.PropertyBeanBinder;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.bind.PropertySourcesPropertyValues;
-import org.springframework.boot.bind.RelaxedDataBinder;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.env.MutablePropertySources;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -52,11 +50,15 @@ public class AbstractServerTests {
     }
 
     private void loadProperties() throws Exception {
-        MutablePropertySources mutablePropertySources = PropertySourcesFactory.createPropertySources();
+        // Spring boot's default properties loading
+        PropertyBeanBinder propertyBeanLoader = new PropertyBeanBinder();
+        propertyBeanLoader.registerPropertiesFromClassPath("application.properties");
+        propertyBeanLoader.registerPropertiesFromClassPath("config/application.properties");
+        propertyBeanLoader.registerPropertiesFromFile("application.properties");
 
         appServerProperties = new AppServerProperties();
-        RelaxedDataBinder propertiesBinder = new RelaxedDataBinder(appServerProperties, "app.server");
-        propertiesBinder.bind(new PropertySourcesPropertyValues(mutablePropertySources));
+
+        propertyBeanLoader.bind(appServerProperties);
     }
 
     private void setupOperationClasses(WebTarget webTarget) {
