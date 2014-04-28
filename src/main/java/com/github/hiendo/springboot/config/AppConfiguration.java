@@ -4,7 +4,6 @@ import com.github.hiendo.springboot.web.TestResource;
 import org.apache.catalina.Context;
 import org.apache.tomcat.JarScanner;
 import org.apache.tomcat.JarScannerCallback;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.slf4j.LoggerFactory;
@@ -102,7 +101,6 @@ public class AppConfiguration implements WebSocketConfigurer {
     public ServletRegistrationBean servletRegistrationBean(){
         ResourceConfig resourceConfig = new ResourceConfig();
         resourceConfig.packages("com.github.hiendo");
-        resourceConfig.register(JacksonFeature.class);
         ServletContainer servletContainer = new org.glassfish.jersey.servlet.ServletContainer(resourceConfig);
         return new ServletRegistrationBean(servletContainer,"/rest/*");
     }

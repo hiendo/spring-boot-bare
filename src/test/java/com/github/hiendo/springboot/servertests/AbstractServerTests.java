@@ -7,7 +7,6 @@ import com.github.hiendo.springboot.servertests.operations.StaticFileOperations;
 import com.github.hiendo.springboot.servertests.properties.PropertyBeanBinder;
 import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.testng.annotations.AfterSuite;
@@ -81,7 +80,7 @@ public class AbstractServerTests {
     private WebTarget setupClient(String serverBaseUrl) {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.connectorProvider(new ApacheConnectorProvider());
-        Client client = ClientBuilder.newClient(clientConfig).register(JacksonFeature.class);
+        Client client = ClientBuilder.newClient(clientConfig);
         return client.target(serverBaseUrl);
     }
 }
