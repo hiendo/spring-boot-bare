@@ -91,3 +91,7 @@ test {
 springBoot {
     mainClass = 'com.github.hiendo.springboot.config.AppMain'
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
