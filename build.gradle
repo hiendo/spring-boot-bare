@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.0.2.RELEASE'
+        springBootVersion = '1.1.5.RELEASE'
     }
 
     repositories {
@@ -88,8 +88,9 @@ test {
     exclude(["**/Abstract*.class", '**/*$*'])
 }
 
-springBoot {
+bootRepackage {
     mainClass = 'com.github.hiendo.springboot.config.AppMain'
+    classifier = 'exec'
 }
 
 task wrapper(type: Wrapper) {
