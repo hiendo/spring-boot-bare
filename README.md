@@ -1,10 +1,10 @@
 Spring Boot Template
 ===
 
-Template spring boot app for experimentation and can be used as samples.
+Project is for experimentation of Spring Boot's features and can be used as template for other projects.
 
 # Build
-gradle clean build
+./gradle clean build
 
 # Run app
 java -jar build/libs/spring-boot-template-1.0.0-SNAPSHOT.jar
